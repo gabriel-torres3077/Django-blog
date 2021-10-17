@@ -1,0 +1,19 @@
+{% extends "blog/base.html" %}
+
+{% block title %} Meu Blog 🐍 {% endblock %}
+
+{% block content %}
+    {% for posts in post_list %}
+        <article>
+            <h2>
+                <a href="{{ posts.get_absolute_url }}">
+                {{ posts.title }}
+                </a>
+            </h2>
+            <p class="date">
+                publicado em {{ posts.created }} por {{ posts.author }}
+            </p>
+            {{ posts.body|linebreaks|truncatewords:10|truncatechars:100 }}
+        </article>
+    {% endfor %}
+{% endblock %}
